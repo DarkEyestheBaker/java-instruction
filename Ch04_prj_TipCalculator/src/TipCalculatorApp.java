@@ -10,9 +10,9 @@ public class TipCalculatorApp {
 
 		Scanner sc = new Scanner(System.in);
 
-		BigDecimal percent15 = new BigDecimal("0.15");
-		BigDecimal percent20 = new BigDecimal("0.2");
-		BigDecimal percent25 = new BigDecimal("0.25");
+		final BigDecimal percent15 = new BigDecimal("0.15");
+		final BigDecimal percent20 = new BigDecimal("0.2");
+		final BigDecimal percent25 = new BigDecimal("0.25");
 
 		// String y/n
 		String choice = "y";
@@ -28,7 +28,7 @@ public class TipCalculatorApp {
 			System.out.println();
 			System.out.println("15%");
 			BigDecimal TipAmount15 = mealCost.multiply(percent15);
-			percent15 = percent15.multiply(mealCost);
+			percent15.multiply(mealCost);
 			System.out.println("Tip Amount:  " + TipAmount15);
 
 			BigDecimal totalAmount15 = mealCost.add(TipAmount15);
@@ -38,7 +38,7 @@ public class TipCalculatorApp {
 			System.out.println();
 			System.out.println("20%");
 			BigDecimal TipAmount20 = mealCost.multiply(percent20);
-			percent20 = percent20.multiply(mealCost);
+			percent20.multiply(mealCost);
 			System.out.println("Tip Amount:  " + TipAmount20);
 
 			BigDecimal totalAmount20 = mealCost.add(TipAmount20);
@@ -48,7 +48,7 @@ public class TipCalculatorApp {
 			System.out.println();
 			System.out.println("25%");
 			BigDecimal TipAmount25 = mealCost.multiply(percent25);
-			percent25 = percent25.multiply(mealCost);
+			percent25.multiply(mealCost);
 			System.out.println("Tip Amount:  " + TipAmount25);
 
 			BigDecimal totalAmount25 = mealCost.add(TipAmount25);
@@ -58,7 +58,7 @@ public class TipCalculatorApp {
 			System.out.println();
 			System.out.print("Continue? y/n: ");
 			choice = sc.next();
-
+			System.out.println();
 		}
 		System.out.println();
 		System.out.println("Bye!");
