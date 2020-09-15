@@ -15,16 +15,16 @@ public class FutureValueWithMethodApp {
 			double interestRate;
 			int years;
 
-			monthlyInvestment = getDouble(sc, "Enter monthly investment: ", 0, 1000);
-			interestRate = getDouble(sc, "Enter yearly interest rate: ", 0, 30);
-			years = getInt(sc, "Enter  years: ", 0, 100);
+			monthlyInvestment = getDoubleWithinRange(sc, "Enter monthly investment: ", 0, 1000);
+			interestRate = getDoubleWithinRange(sc, "Enter yearly interest rate: ", 0, 30);
+			years = getInt(sc, "Enter  years: ");
 			// convert yearly values to monthly values
 
 			double monthlyInterestRate = interestRate / 12 / 100;
 			int months = years * 12;
 
 			// call the future value method
-			System.out.println("About to call calculateFutureValue");
+	
 			double futureValue = calculateFutureValue(monthlyInvestment, monthlyInterestRate, months);
 
 			// format and display the result
@@ -40,12 +40,10 @@ public class FutureValueWithMethodApp {
 	}
 
 	public static double calculateFutureValue(double monthlyInv, double monthlyInterestRate, int months) {
-		System.out.println("In calculateFutureValue");
 		double futureValue = 0.0;
 		for (int i = 1; i <= months; i++) {
 			futureValue = (futureValue + monthlyInv) * (1 + monthlyInterestRate);
 		}
-		System.out.println("Returning " + futureValue);
 		return futureValue;
 	}
 
@@ -57,14 +55,15 @@ public class FutureValueWithMethodApp {
 		while (!isValid) {
 
 			System.out.print(prompt);
+
 			if (sc.hasNextDouble()) {
 				retVal = sc.nextDouble();
-				sc.nextLine();
 				isValid = true;
 			} else {
 				System.out.println("Invalid decimal number");
-				sc.nextLine();
+
 			}
+			sc.nextLine();
 		}
 		return retVal;
 	}
@@ -75,15 +74,17 @@ public class FutureValueWithMethodApp {
 
 		while (!isValid) {
 			retVal = getDouble(sc, prompt);
+
 			if (retVal <= min) {
 				System.out.println("Error! Number must be greater than " + min + ".");
 				;
 
-			} else if (retVal >= max)
+			} else if (retVal >= max) {
 				System.out.println("Error!  Number must be less than " + max + ".");
-			{
+
 			}
 		}
+		return retVal;
 	}
 
 	public static int getInt(Scanner sc, String prompt) {
@@ -91,16 +92,17 @@ public class FutureValueWithMethodApp {
 
 		boolean isValid = false;
 
-		while (!isValid) {
+		while (isValid == false) {
 
 			System.out.print(prompt);
-			if (sc.hasNextDouble()) {
+
+			if (sc.hasNextInt()) {
 				retVal = sc.nextInt();
 				isValid = true;
 			} else {
 				System.out.println("Invalid integer");
-				sc.nextLine();
 			}
+			sc.nextLine();
 		}
 		return retVal;
 	}
