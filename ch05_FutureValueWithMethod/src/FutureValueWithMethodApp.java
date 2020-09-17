@@ -24,7 +24,7 @@ public class FutureValueWithMethodApp {
 			int months = years * 12;
 
 			// call the future value method
-	
+			System.out.println("About to call calculateFutureValue");
 			double futureValue = calculateFutureValue(monthlyInvestment, monthlyInterestRate, months);
 
 			// format and display the result

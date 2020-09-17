@@ -9,13 +9,6 @@ public class GuessNumberApp {
 
 	}
 
-	/**
-	 * Returns a random integer between 1 and limit
-	 * 
-	 * @param limit
-	 * @return
-	 */
-
 	public static int getRandomInt(int limit) {
 		// get a random number between 1 and the limit
 		double d = Math.random() * limit; // d is >= 0.0 and < limit
@@ -35,23 +28,23 @@ public class GuessNumberApp {
 		Scanner sc = new Scanner(System.in);
 		int count = 0;
 		int guess = 0;
-
 		while (guess != number) {
 			System.out.print("Your guess: ");
 			guess = sc.nextInt();
 
 			if (guess < 1 || guess > LIMIT) {
 				System.out.println("Invalid guess. Try again.");
-//				continue;
+
+			} else {
+				if (guess < number) {
+					System.out.println("Too low.");
+				}
+				if (guess > number) {
+					System.out.println("Too high.");
+				}
+				count++;
 			}
 
-			else if (guess < number) {
-				System.out.println("Too low.");
-			}
-			if (guess > number) {
-				System.out.println("Too high.");
-			}
-			count++;
 		}
 		System.out.println("You guessed it in " + count + " tries.\n");
 		System.out.println("Bye!");
