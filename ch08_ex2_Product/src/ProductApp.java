@@ -35,5 +35,8 @@ public class ProductApp {
 			choice = sc.nextLine();
 			System.out.println();
 		}
+
+		System.out.println("Come back soon!");
+		System.out.println();
 	}
 }
