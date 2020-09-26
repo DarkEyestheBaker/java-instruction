@@ -7,7 +7,6 @@ public class PersonalManagerApp {
 
 		String choice = "y";
 		while (choice.equalsIgnoreCase("y")) {
-			System.out.print();
 			String custOrEmp = Console.getString("Create customer or employee?  (c/e");
 
 			boolean isValid;

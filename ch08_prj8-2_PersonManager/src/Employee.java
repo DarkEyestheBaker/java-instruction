@@ -10,11 +10,11 @@ public class Employee extends Person {
 	}
 
 	// Getters and setters
-	public String getSsnr() {
+	public String getSsn() {
 		return ssn;
 	}
 
-	public void setSsnr(String ssnr) {
+	public void setSsnr(String ssn) {
 		this.ssn = ssn;
 	}
 
