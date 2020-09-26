@@ -31,6 +31,7 @@ public class AnimalCounterApp {
 		Sheep dolly;
 		try {
 			dolly = (Sheep) blackie.clone();
+
 			dolly.setName("Dolly");
 			count(dolly, 3);
 		} catch (CloneNotSupportedException e) {
