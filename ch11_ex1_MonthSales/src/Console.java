@@ -1,7 +1,4 @@
-import java.lang.Enum;
-import java.time.Month;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Console {
 
@@ -13,8 +10,6 @@ public class Console {
 
 	public class MonthNumber {
 //public enum Month extends Enum<Month> implements TemporalAccessor, TemporalAdjuster {
-
-	}
 
 	}
 
@@ -55,4 +50,4 @@ public class Console {
 		}
 		return d;
 	}
-}}
+}
