@@ -1,81 +1,126 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class WizardInventory {
+
 	public String getCommand() {
 		return command;
 	}
 
-	private String show;
-	private String grab;
-	private String edit;
-	private String drop;
-	private String exit;
-
 	{
-
 	}
+	private static final int MAX_INVENTORY_SIZE = 4;
 
 	public static void main(String[] args) {
-		// get the input from the user
-		String command;
+		printWelcomeMessage();
 
-		Scanner input = new Scanner(System.in);		
-		//Print lines - no input needed
-				System.out.println("Welcome, adventurers, to the Wizard Inventory Game!");
+		List<String> inventory = new ArrayList<>();
+		inventory.add("wooden staff");
+		inventory.add("wizard hat");
+		inventory.add("cloth shoes");
+		inventory.add("tabby cat");
+		System.out.println();
+
+		boolean done = false;
+		String command = "go";
+		while (!command.equalsIgnoreCase("exit")) {
+			command = Console.getString("Command:  ");
+			System.out.println();
+
+			switch (command) {
+			case "show":
+				showInventory(inventory);
+				break;
+
+			case "grab":
+				addItemToInventory(inventory);
+				break;
+
+			case "edit":
+				editInventory(inventory);
+				break;
+
+			case "drop":
+				dropItemFromInventory(inventory);
+				break;
+
+			case "exit":
+				done = true;
 				System.out.println();
-				System.out.println("COMMAND MENU: ");
-				System.out.println("show - Show all items");
-				System.out.println("grab - Grab an item");
-				System.out.println("edit - Edit an item");
-				System.out.println("drop - Drop an item");
-				System.out.println("exit - Exit program");
-		
+				System.out.println("Faretheewell and safe travels, adventurer!");
+				break;
 
-				command = input.next();
-				Command[] commands = new Command[5];
-				commands[0] = new Command(show);
-				
-				for(int i = 0; i < command; ) {
-					System.out.println("Your command? ");
-					commands[command] = input.next();
-					
-// Inventory				
-				ArrayList<String> wizInv = new ArrayList<>(4);
-		wizInv.add("Tome of the Wizards");
-		wizInv.add("Ring of Spell Storing");
-		wizInv.add("Cloak of Displacement");
-		wizInv.add("Illusionist's Bracers");
+			default:
+				System.out.println();
+				System.out.println("No, fool!  Try again!");
+				break;
 
-		// Edit Inventory - Remove one item and add Rod of Stewart
-		String wizInv = wizInv.remove();
-
-		System.out.println("One " + wizInv + "was banished from this realm!  And " + wizInv.add("Rod of Stewart")
-				+ " was given a place of honor!");
-
-
-
-	}public
-
-	{
-		this.command = command;
+			}
+		}
 	}
 
-	// get the input from the user
-	System.out.println("Your command? ");
-	// Error message for bad user input
-	System.out.println("No, fool!  Try again!");if(this.)
-	{ //show
-	}else if
-	{ // grab
-	}else if
-	{//edit
-	}else if
-	{// drop
-	}else
-	{// exit
+	// Print lines - no input needed
+	String command;
+
+	private static void printWelcomeMessage() {
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Welcome, adventurers, to the Wizard Inventory Game!");
+		System.out.println();
+		System.out.println("COMMAND MENU: ");
+		System.out.println("show - Show all items");
+		System.out.println("grab - Grab an item");
+		System.out.println("edit - Edit an item");
+		System.out.println("drop - Drop an item");
+		System.out.println("exit - Exit program");
+		System.out.println();
 	}
-	{
-	}System.out.println("Faretheewell and safe travels, adventurer!");
-}
+
+	private static void showInventory(List<String> inventory) {
+//		int oneBasedIndex = 1;
+
+		for (String item : inventory) {
+			System.out.println(inventory.indexOf(item) + 1 + ".  " + item);
+//			oneBasedIndex++;
+
+		}
+	}
+
+	private static void addItemToInventory(List<String> inventory) {
+		if (inventory.size() > MAX_INVENTORY_SIZE) {
+			System.out.println("You are overburdened.  Drop one item.");
+			return;
+		}
+		String newItem = Console.getString("Name:  ");
+		inventory.add(newItem);
+		System.out.println(newItem + " was added.");
+
+	}
+
+	private static void editInventory(List<String> inventory) {
+		int oneBasedIndex = Console.getInt("Number: ");
+		int zeroBasedIndex = oneBasedIndex - 1;
+
+		if (zeroBasedIndex < 0 || zeroBasedIndex >= inventory.size()) {
+			System.out.println("Index invalid! ");
+			return;
+		}
+		String newItemName = Console.getString("Updated name:  ");
+		String previousItemName = inventory.set(zeroBasedIndex, newItemName);
+		System.out.println("Replaced" + previousItemName + " with " + newItemName);
+	}
+
+	private static void dropItemFromInventory(List<String> inventory) {
+		int oneBasedIndex = Console.getInt("Number: ");
+		int zeroBasedIndex = oneBasedIndex - 1;
+
+		if (zeroBasedIndex < 0 || zeroBasedIndex >= inventory.size()) {
+			System.out.println("Index invalid! ");
+			return;
+		}
+		String removedItem = inventory.remove(zeroBasedIndex);
+		System.out.println(removedItem + " was removed!");
+
+	}
 }
