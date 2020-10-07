@@ -87,15 +87,15 @@ public class WizardInventory {
 		}
 	}
 
-	private static void addItemToInventory(List<String> inventory) {
+	private static boolean addItemToInventory(List<String> inventory) {
 		if (inventory.size() > MAX_INVENTORY_SIZE) {
-			System.out.println("You are overburdened.  Drop one item.");
-			return;
+			System.out.println("You are overburdened.  Leave one item behind.");
+			return false;
 		}
 		String newItem = Console.getString("Name:  ");
 		inventory.add(newItem);
 		System.out.println(newItem + " was added.");
-
+		return true;
 	}
 
 	private static void editInventory(List<String> inventory) {
