@@ -2,6 +2,18 @@ package dietsch.app;
 
 public class EmailCreatorApp {
 
+	public static EmailRecipient createEmailRecipient(String csvStr) {
+		String[] nameParts = csvStr.split(",");
+
+		String emailAddress = nameParts[2].toLowerCase();
+		String firstName = convertToTitleCase(nameParts[0]);
+		String lastName = convertToTitleCase(nameParts[1]);
+
+		EmailRecipient emailRecipient = new EmailRecipient(emailAddress, firstName, lastName);
+		return emailRecipient;
+
+	}
+
 	public static String convertToTitleCase(String inputStr) {
 		String firstNameTrimmed = inputStr.trim();
 		String nameFirstLetter = firstNameTrimmed.substring(0, 1);
@@ -20,22 +32,19 @@ public class EmailCreatorApp {
 				"ART,VENERE,ART@VENERE.ORG" };
 
 		String template = "To:      {email}\n" + "From:    noreply@deals.com\n" + "Subject: Deals!\n\n"
-				+ "Hi {first_name},\n\n" + "We've got some great deals for you. Check our website!";
+				+ "Hi {first_name},\n\n"
+				+ "We've got some great deals for you. Check our website!  TODAY ONLY!\n  \nYour friendly, neighborhood Cheese Wizard";
 
 		System.out.println("Email Creator");
 		System.out.println();
 
 		for (String curEntry : csv) {
+			EmailRecipient er = createEmailRecipient(curEntry);
 
-			String[] nameParts = curEntry.split(",");
+			String emailText = template.replace("{email}", er.getEmailAddress());
 
-			String emailAddress = nameParts[2].toLowerCase();
+			emailText = emailText.replace("{first_name}", er.getFirstName());
 
-			String firstNameTitleCase = convertToTitleCase(nameParts[0]);
-
-			String emailText = template.replace("{email}", emailAddress);
-
-			emailText = emailText.replace("{first_name}", firstNameTitleCase);
 			System.out.println("===========================================================");
 			System.out.println(emailText);
 		}
