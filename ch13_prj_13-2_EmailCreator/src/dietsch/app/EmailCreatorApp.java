@@ -33,7 +33,10 @@ public class EmailCreatorApp {
 
 			String firstNameTitleCase = convertToTitleCase(nameParts[0]);
 
-			System.out.println(firstNameTitleCase);
+			String emailText = template.replace("{email}", emailAddress);
+			emailText = emailText.replace("{first_name}", firstNameTitleCase);
+			System.out.println("===========================================================");
+			System.out.println(emailText);
 		}
 	}
 }
