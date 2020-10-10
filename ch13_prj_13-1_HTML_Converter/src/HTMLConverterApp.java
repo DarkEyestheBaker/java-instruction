@@ -26,6 +26,7 @@ public class HTMLConverterApp {
 		}
 
 		html = htmlBldr.toString();
+
 		// Remove blank lines
 		html = html.replace("\n\n", "\n");
 		System.out.println("\nText Output: \n" + html);
