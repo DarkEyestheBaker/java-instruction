@@ -56,8 +56,9 @@ public final class CustomerTextFile implements DAO<Customer> {
 			}
 		} else {
 			System.out.println("Customers file not found at " + customersPath.toAbsolutePath());
-			return customers;
+
 		}
+		return customers;
 	}
 
 	@Override
