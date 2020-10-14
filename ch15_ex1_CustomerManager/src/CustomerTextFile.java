@@ -23,7 +23,6 @@ public final class CustomerTextFile implements DAO<Customer> {
 	public CustomerTextFile() {
 		customersPath = Paths.get("customers.txt");
 		customersFile = customersPath.toFile();
-
 		// Read the customers from the file
 		getAll();
 	}
