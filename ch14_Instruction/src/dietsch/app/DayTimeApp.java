@@ -29,7 +29,7 @@ public class DayTimeApp {
 		LocalDate february = halloween.withMonth(2);
 		System.out.println(february);
 
-		LocalDate nextMonth = currentDate.plus(1, ChronoUnit.MONTHS);
+		LocalDate nextMonth = currentDate.minus(1, ChronoUnit.MONTHS);
 		System.out.println(nextMonth + " " + nextMonth.getDayOfWeek());
 		LocalDate fourWeeks = currentDate.plus(4, ChronoUnit.WEEKS);
 		System.out.println(fourWeeks + " " + fourWeeks.getDayOfWeek());
