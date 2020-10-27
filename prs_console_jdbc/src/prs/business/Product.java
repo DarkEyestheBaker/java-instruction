@@ -84,7 +84,7 @@ public class Product {
 	}
 
 	private Product getProduct() throws SQLException {
-		return product;
+		return getProduct();
 	}
 
 	@Override
