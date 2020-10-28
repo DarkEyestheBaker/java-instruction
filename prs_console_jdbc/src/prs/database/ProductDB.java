@@ -49,12 +49,36 @@ public class ProductDB {
 
 				products.add(product);
 			}
-
 			return products;
 
 		} catch (SQLException e) {
 			throw new PrsDataException("Error retrieving products.  Msg: " + e.getMessage());
 		}
+	}
+
+	public Product get(long productID) {
+		String selectOne = "SELECT * FROM Product WHERE ID = ?";
+		Product product = null;
+		try (Connection con = getConnection(); PreparedStatement pd = con.prepareStatement(selectOne)) {
+			pd.setLong(1, productID);
+			ResultSet rs = pd.executeQuery();
+			if (rs.next()) {
+				int id = rs.getInt("ID");
+				int vendorId = rs.getInt("VendorId");
+				String partNumber = rs.getString("PartNumber");
+				String name = rs.getString("Name");
+				double price = rs.getDouble("Price");
+				String unit = rs.getString("Unit");
+				String photoPath = rs.getString("PhotoPath");
+
+				product = new Product(id, vendorId, partNumber, name, price, unit, photoPath);
+
+			}
+		} catch (SQLException e) {
+			throw new PrsDataException("Error retrieving products.  Msg: " + e.getMessage());
+		}
+		return product;
+
 	}
 
 	public boolean delete(long id) {

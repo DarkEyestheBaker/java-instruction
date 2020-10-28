@@ -50,7 +50,15 @@ public class UserDB {
 		} catch (SQLException e) {
 
 			throw new PrsDataException("Error retrieving user.  Msg: " + e.getMessage());
-
 		}
 	}
+
+	/**
+	 * Authenticates a User
+	 *
+	 * @param userName The user's userName
+	 * @param password The user's password
+	 * @returns The matching User or null if no matching User found
+	 */
+//   public User authenticateUser(String userName, String password) { ... }
 }

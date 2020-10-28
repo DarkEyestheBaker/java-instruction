@@ -1,6 +1,5 @@
 package prs.ui;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import prs.business.Product;
@@ -29,37 +28,28 @@ public class PrsApp {
 				break;
 
 			case "gp":
-				long id = ps.getLong("ProductID");
-				String productName = ps.getString("ProductName: ");
+				getProduct();
 				break;
 
-		if (user == isAdmin()) {
-				case "ap":
-				long id = pa.addLong("ProductID");
-				String product pa = pa.getString("int id, int vendorId, String partNumber, String name, double price, String unit, String photoPath");
+			case "ap":
+				addProduct();
 				break;
-		} else  {
-			
-			System.out.println("You do not have access to that function.");
 
-				if (user == isAdmin()) {
 			case "dp":
-				long id = pd.deleteLong("Delete");
+				deleteProduct();
 				break;
-		} else  {
-			
-		System.out.println("You do not have access to that function.");
-		
+
 			case "exit":
 				// Nothing to do
-		
+
 				break;
-				
+
 			default:
 				System.out.println("Invalid Command.");
 				break;
 			}
-			}
+		}
+	}
 
 	private static void listProducts() {
 		try {
@@ -73,5 +63,26 @@ public class PrsApp {
 		} catch (PrsDataException e) {
 			System.out.println("Could not retrieve products. Msg: " + e.getMessage());
 		}
+	}
+
+	private static void getProduct() {
+		try {
+			ProductDB productDb = new ProductDB();
+			int productID = Console.getInt("Product ID: ");
+			Product product = productDb.get(productID);
+			System.out.println("Product: " + product);
+			System.out.println();
+		} catch (PrsDataException e) {
+			System.out.println("Could not retrieve products. Msg: " + e.getMessage());
+		}
+
+	}
+
+	private static void addProduct() {
+		System.out.println("Not implemented at this time. Check back later. ");
+	}
+
+	private static void deleteProduct() {
+		System.out.println("Not implemented at this time. Check back later. ");
 	}
 }
