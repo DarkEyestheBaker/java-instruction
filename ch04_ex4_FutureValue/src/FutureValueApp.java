@@ -21,10 +21,9 @@ public class FutureValueApp {
 			percentFormatter.setMaximumFractionDigits(1);
 
 			// Printer header row
-			System.out.println("Year");
+			System.out.print("Year");
 			for (double intRate = 0.05; intRate <= 0.065; intRate += 0.005) {
-				System.out.println(percentFormatter.format(intRate));
-				System.out.println("\t" + percentFormatter.format(intRate));
+				System.out.print("\t" + percentFormatter.format(intRate));
 			}
 			System.out.println();
 
@@ -33,31 +32,29 @@ public class FutureValueApp {
 				for (double intRate = 0.05; intRate <= 0.065; intRate += 0.005) {
 					double monthlyInterestRate = intRate / 12;
 					int months = year * 12;
-					// use a for loop to calculate the future value
+					// Do the calculation from the previous code
 					double futureValue = 0.0;
 					for (int i = 1; i <= months; i++) {
 						futureValue = (futureValue + monthlyInvestment) * (1 + monthlyInterestRate);
 					}
 
-					// format and display the result
+//					 format and display the result
 					NumberFormat currency = NumberFormat.getCurrencyInstance();
-					System.out.println("Future value:               " + currency.format(futureValue));
-					System.out.println();
-
-					// see if the user wants to continue
-					System.out.print("Continue? (y/n): ");
-					choice = sc.next();
-					System.out.println();
+					System.out.print("\t" + currency.format(futureValue));
 				}
+				System.out.println();
 			}
-			System.out.println("Bye!");
+			// see if the user wants to continue
+			System.out.print("Continue? (y/n): ");
+			choice = sc.next();
+			System.out.println();
 		}
+		System.out.println("Bye!");
 	}
 
 	public static double calculateFutureValue(double monthlyInv, double monthlyInterestRate, int months) {
 		double futureValue = 0.0;
 
 		return futureValue;
-
 	}
 }
