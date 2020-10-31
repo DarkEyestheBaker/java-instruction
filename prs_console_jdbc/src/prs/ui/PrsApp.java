@@ -3,7 +3,9 @@ package prs.ui;
 import java.util.List;
 
 import prs.business.Product;
+import prs.business.User;
 import prs.database.ProductDB;
+import prs.database.UserDB;
 import prs.exceptions.PrsDataException;
 
 public class PrsApp {
@@ -12,42 +14,83 @@ public class PrsApp {
 		System.out.println("Welcome to the PRS App");
 		System.out.println();
 		System.out.println("COMMANDS");
+		System.out.println("login - Login");
 		System.out.println("la - List all products");
 		System.out.println("gp - Get product");
 		System.out.println("ap - Add product");
 		System.out.println("dp - Delete product");
 		System.out.println("exit - Exit the application");
 		System.out.println();
+
+		User authenticatedUser = null;
+
 		String command = "";
 		while (!command.equalsIgnoreCase("exit")) {
 			command = Console.getString("Enter command: ");
-			switch (command.toLowerCase()) {
 
-			case "la":
-				listProducts();
-				break;
+			if (command.equalsIgnoreCase("login")) {
+				authenticatedUser = login();
 
-			case "gp":
-				getProduct();
-				break;
+				if (authenticatedUser == null) {
+					System.out.println("Username/password not found.");
+				} else {
+					System.out.println("Welcome, " + authenticatedUser.getFirstName());
+				}
+			} else if (command.equalsIgnoreCase("logout")) {
+				authenticatedUser = null;
+			} else if (authenticatedUser != null) {
 
-			case "ap":
-				addProduct();
-				break;
+				switch (command.toLowerCase()) {
+				case "login":
+					login();
+					break;
 
-			case "dp":
-				deleteProduct();
-				break;
+				case "la":
+					listProducts();
+					break;
 
-			case "exit":
-				// Nothing to do
+				case "gp":
+					getProduct();
+					break;
 
-				break;
+				case "ap":
+					addProduct();
+					break;
 
-			default:
-				System.out.println("Invalid Command.");
-				break;
+				case "dp":
+					deleteProduct();
+					break;
+
+//				case "lu":
+//					ListUsers();
+//					break;
+
+				case "exit":
+					System.out.println();
+					System.out.println("Bye!");
+					break;
+
+				default:
+					System.out.println("Invalid Command.");
+					break;
+				}
+			} else {
+				System.out.println("Must login to perform this action.");
 			}
+		}
+	}
+
+	private static User login() {
+		try {
+			String userName = Console.getString("User Name: ");
+			String password = Console.getString("Password: ");
+
+			UserDB userDB = new UserDB();
+			User user = userDB.authenticateUser(userName, password);
+			return user;
+		} catch (PrsDataException e) {
+			System.err.println("Error login in. Msg: " + e.getMessage());
+			return null;
 		}
 	}
 
@@ -62,6 +105,7 @@ public class PrsApp {
 			System.out.println();
 		} catch (PrsDataException e) {
 			System.out.println("Could not retrieve products. Msg: " + e.getMessage());
+
 		}
 	}
 
@@ -75,7 +119,6 @@ public class PrsApp {
 		} catch (PrsDataException e) {
 			System.out.println("Could not retrieve products. Msg: " + e.getMessage());
 		}
-
 	}
 
 	private static void addProduct() {
