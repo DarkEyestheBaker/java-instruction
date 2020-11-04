@@ -17,6 +17,7 @@ public class PrsApp {
 		System.out.println("login - Login");
 		System.out.println("la - List all products");
 		System.out.println("gp - Get product");
+		System.out.println("rp - Request product");
 		System.out.println("ap - Add product");
 		System.out.println("dp - Delete product");
 		System.out.println("exit - Exit the application");
