@@ -2,7 +2,9 @@ package prs.business;
 
 import java.sql.SQLException;
 
-public class Product {
+import prs.database.DB;
+
+public class Product extends DB {
 
 	private int id;
 	private int vendorId;

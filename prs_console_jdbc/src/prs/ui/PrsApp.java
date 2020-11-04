@@ -26,56 +26,59 @@ public class PrsApp {
 
 		String command = "";
 		while (!command.equalsIgnoreCase("exit")) {
-			command = Console.getString("Enter command: ");
+			try {
 
-			if (command.equalsIgnoreCase("login")) {
-				authenticatedUser = login();
+				command = Console.getString("Enter command: ");
 
-				if (authenticatedUser == null) {
-					System.out.println("Username/password not found.");
-				} else {
-					System.out.println("Welcome, " + authenticatedUser.getFirstName());
-				}
-			} else if (command.equalsIgnoreCase("logout")) {
-				authenticatedUser = null;
-			} else if (authenticatedUser != null) {
+				if (command.equalsIgnoreCase("login")) {
+					authenticatedUser = login();
 
-				switch (command.toLowerCase()) {
-				case "login":
-					login();
-					break;
+					if (authenticatedUser == null) {
+						System.out.println("Username/password not found.");
+					} else {
+						System.out.println("Welcome, " + authenticatedUser.getFirstName());
+					}
+				} else if (command.equalsIgnoreCase("logout")) {
+					authenticatedUser = null;
+				} else if (command.equalsIgnoreCase("exit")) {
+					System.out.println("Bye!");
 
-				case "la":
-					listProducts();
-					break;
+				} else if (authenticatedUser != null) {
 
-				case "gp":
-					getProduct();
-					break;
+					switch (command.toLowerCase()) {
+					case "login":
+						login();
+						break;
 
-				case "ap":
-					addProduct();
-					break;
+					case "la":
+						listProducts();
+						break;
 
-				case "dp":
-					deleteProduct();
-					break;
+					case "gp":
+						getProduct();
+						break;
+
+					case "ap":
+						addProduct();
+						break;
+
+					case "dp":
+						deleteProduct();
+						break;
 
 //				case "lu":
 //					ListUsers();
 //					break;
 
-				case "exit":
-					System.out.println();
-					System.out.println("Bye!");
-					break;
-
-				default:
-					System.out.println("Invalid Command.");
-					break;
+					default:
+						System.out.println("Invalid Command.");
+						break;
+					}
+				} else {
+					System.out.println("Must login to perform this action.");
 				}
-			} else {
-				System.out.println("Must login to perform this action.");
+			} catch (Exception e) {
+				System.out.println("Caught exception: " + e);
 			}
 		}
 	}
