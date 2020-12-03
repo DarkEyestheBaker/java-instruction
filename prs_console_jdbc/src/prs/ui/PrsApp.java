@@ -59,6 +59,10 @@ public class PrsApp {
 						getProduct();
 						break;
 
+					case "rp":
+						requestProduct();
+						break;
+
 					case "ap":
 						addProduct();
 						break;
