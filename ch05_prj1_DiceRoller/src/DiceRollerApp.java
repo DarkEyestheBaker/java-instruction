@@ -1,27 +1,29 @@
-
 public class DiceRollerApp {
 
-	private static int getDieRoll() {
-		int dieRoll = (int) (Math.random() * 6) + 1;
-		return dieRoll;
+	private static int getDiceRoll() {
+		int diceRoll = (int) (Math.random() * 6) + 1;
+		return diceRoll;
 	}
 
-	private static void printExtraMessage(int die1, int die2) {
-		if (die1 + die2 == 2) {
+	private static void printExtraMessage(int dice1, int dice2) {
+		if (dice1 + dice2 == 2) {
 			System.out.println("Snake eyes!");
-		} else if (die1 + die2 == 12) {
-			System.out.println("Boxcars!");
+		} else if (dice1 + dice2 == 12) {
+			System.out.println("Box Cars!");
 		}
 	}
 
 	public static void main(String[] args) {
-		int die1 = getDieRoll();
-		int die2 = getDieRoll();
 
-		String message = "Die 1: 	" + die1 + "\nDie 2: 	" + die2 + "\nTotal: 	" + (die1 + die2);
-		printExtraMessage(die1, die2);
+		// call method twice to get 2 dice rolls
+		int dice1 = getDiceRoll();
+		int dice2 = getDiceRoll();
 
+		String message = "Die 1: " + dice1 + "\nDie 2: " + dice2 + "\nTotal: " + (dice1 + dice2);
 		System.out.println(message);
+
+		System.out.println();
+		printExtraMessage(dice1, dice2);
 	}
 
 }
